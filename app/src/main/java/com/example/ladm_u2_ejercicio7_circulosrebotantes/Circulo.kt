@@ -11,12 +11,14 @@ class Circulo(l:Lienzo) {
     var y = 0f
     var movX= 0f
     var movY=0f
-    var color=Color.BLUE
+    var color=Color.CYAN
 
     init {
         x = rand(1000)
         y = rand (1900)
         movX = rand(8)+2
+        movY = rand(8)+2
+
         if(rand(100)<50f){
             movX*=-1
         }
@@ -35,10 +37,30 @@ class Circulo(l:Lienzo) {
         x+=movX
         y+=movY
         //Hacer que rebote
-        if(x<0 || x>l.width)
+        if(x<0 || x>l.width){
             movX*=-1
-        if(y<0 || y>l.height)
+            color=Color.rgb(rand(255).toInt(),rand(255).toInt(),rand(255).toInt())
+        }
+
+        if(y<0 || y>l.height){
             movY*=-1
+            color=Color.rgb(rand(255).toInt(),rand(255).toInt(),rand(255).toInt())
+        }
+    }
+
+    fun acelerar(){
+        x+=movX
+        y+=movY
+        //Hacer que rebote
+        if(x<0 || x>l.width){
+            movX*=-1
+            color=Color.rgb(rand(255).toInt(),rand(255).toInt(),rand(255).toInt())
+        }
+
+        if(y<0 || y>l.height){
+            movY*=-1
+            color=Color.rgb(rand(255).toInt(),rand(255).toInt(),rand(255).toInt())
+        }
     }
 
     fun pintar(canvas : Canvas){
